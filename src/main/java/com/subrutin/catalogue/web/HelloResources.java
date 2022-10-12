@@ -3,12 +3,21 @@ package com.subrutin.catalogue.web;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.subrutin.catalogue.service.GreetingService;
+
 @RestController
 public class HelloResources {
 	
+	private GreetingService greetingService;
+	
+	public HelloResources(GreetingService greetingService) {
+		super();
+		this.greetingService = greetingService;
+	}
+
 	@GetMapping("/hello")
 	public String helloWorld() {
-		return "Hello World from Spring Book test";
+		return greetingService.sayGreeting();
 	}
 
 }
