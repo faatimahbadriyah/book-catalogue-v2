@@ -16,6 +16,6 @@
 2. add from Run Configurations -> Environtment -> add
 
 ## ways to create custom profile
-1. create file -> application-development.properties
+1. create new file properties in src/main/resources  -> application-development.properties
 2. add some override configuration->server.port=8090
 3. open Run Configurations -> Spring Boot -> Profile -> select development -> Apply -> Run
