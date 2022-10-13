@@ -20,4 +20,12 @@
 2. add some override configuration->server.port=8090 for test
 3. ways to set up profile:
 - open Run Configurations -> Spring Boot -> Profile -> select development -> Apply -> Run
-- with cli -> mvn spring-boot:run -Dspring-boot.run.profiles=development 
+- with cli -> mvn spring-boot:run -Dspring-boot.run.profiles=development
+
+## ways to run jar project
+Run on your cli
+1. mvn clean package
+2. cd target
+3. dir (to see details)
+4. a. java -jar book-catalogue-v2-0.0.1-SNAPSHOT.jar --spring.profiles.active=development (program argument)  
+   b. java -jar -Dspring.profiles.active=development book-catalogue-v2-0.0.1-SNAPSHOT.jar
