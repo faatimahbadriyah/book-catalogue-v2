@@ -12,7 +12,6 @@ import com.subrutin.catalogue.service.BookService;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 @RestController
 public class BookResource {
 
@@ -20,6 +19,11 @@ public class BookResource {
 
 	private final BookService bookService;
 	
+	public BookResource(BookService bookService) {
+		super();
+		this.bookService = bookService;
+	}
+
 	@GetMapping("/book/{bookId}")
 	public BookDetailDTO findBookDetail(@PathVariable("bookId") Long id) {
 		StopWatch stopWatch = new StopWatch();
