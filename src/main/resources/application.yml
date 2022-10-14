@@ -1,6 +1,6 @@
 logging:
   level:
-    '[com.subrutin.catalogue]': DEBUG
+    '[com.subrutin.catalogue]': TRACE
 
 app:
   currency: IDR
