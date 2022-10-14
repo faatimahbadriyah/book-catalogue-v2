@@ -29,3 +29,8 @@ Run on your cli
 3. dir (to see details)
 4. a. java -jar book-catalogue-v2-0.0.1-SNAPSHOT.jar --spring.profiles.active=development (program argument)  
    b. java -jar -Dspring.profiles.active=development book-catalogue-v2-0.0.1-SNAPSHOT.jar
+   
+## ways to install lombok
+1. download lombok at https://projectlombok.org/download
+2. install jar with specify path SpringToolSuite IDE
+3. check installed lombok on Help -> About Spring Tool Suite
