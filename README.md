@@ -34,3 +34,11 @@ Run on your cli
 1. download lombok at https://projectlombok.org/download
 2. install jar with specify path SpringToolSuite IDE
 3. check installed lombok on Help -> About Spring Tool Suite
+
+## ways to add lombok into project
+1. right click project -> Spring -> Add Starters
+2. type on Available
+3. check add on
+4. hit Next 
+5. check pom.xml
+6. hit Finish
