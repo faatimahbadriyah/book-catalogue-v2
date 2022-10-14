@@ -1,0 +1,38 @@
+app:
+  currency: IDR
+  timezone: Asia/Jakarta
+  welcome-text: Hello World from Spring Book (This text comes from default properties)
+cloud:
+  api-key: '${CLOUD_KEY} '
+server:
+  port: 8081
+  
+---
+spring:
+  profiles: development
+  
+server:
+  port: 8082
+  
+app:
+  welcome-text: Welcome to development profiles
+  
+---
+spring:
+  profiles: test
+  
+server:
+  port: 8083
+  
+app:
+  welcome-text: Welcome to test profiles
+  
+---
+spring:
+  profiles: production
+  
+server:
+  port: 80
+  
+app:
+  welcome-text: Welcome to production profiles
