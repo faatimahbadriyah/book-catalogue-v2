@@ -1,3 +1,7 @@
+logging:
+  level:
+    '[com.subrutin.catalogue]': DEBUG
+
 app:
   currency: IDR
   timezone: Asia/Jakarta
