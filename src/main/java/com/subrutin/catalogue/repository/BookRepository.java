@@ -9,5 +9,7 @@ public interface BookRepository {
 	public Book findBookById(Long id);
 	
 	public List<Book> findAll();
+	
+	public void save(Book book);
 
 }

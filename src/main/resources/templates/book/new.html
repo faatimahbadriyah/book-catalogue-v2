@@ -6,20 +6,20 @@
 
 <body>
 	<h1>Create New Book</h1>
-	<form>
+	<form method="POST" th:action="@{/book/new}" th:object="${bookCreateDTO}">
 		<table>
 			<tr>
 				<td>Title: </td>
-				<td><input name="title" type="text" /></td>
+				<td><input name="title" type="text" th:field="*{bookTitle}"></td>
 			</tr>
 			<tr>
 				<td>Author: </td>
-				<td><input name="author" type="text" /></td>
+				<td><input name="author" type="text"  th:field="*{authorName}"></td>
 			</tr>
 			<tr>
 				<td>Description: </td>
 				<td>
-					<textarea name="description" rows="5" cols="20"></textarea>
+					<textarea name="description" rows="5" cols="20"  th:field="*{description}"></textarea>
 				</td>
 			</tr>
 			<tr>

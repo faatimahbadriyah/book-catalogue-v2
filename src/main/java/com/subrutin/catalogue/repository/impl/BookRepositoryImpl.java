@@ -10,8 +10,8 @@ import com.subrutin.catalogue.repository.BookRepository;
 import lombok.Data;
 
 @Data
-public class BookRepositoryImpl implements BookRepository{
-	
+public class BookRepositoryImpl implements BookRepository {
+
 	private Map<Long, Book> bookMap;
 
 	@Override
@@ -24,5 +24,12 @@ public class BookRepositoryImpl implements BookRepository{
 	public List<Book> findAll() {
 		List<Book> bookList = new ArrayList<Book>(bookMap.values());
 		return bookList;
+	}
+
+	@Override
+	public void save(Book book) {
+		int size = bookMap.size();
+		book.setId((long) size + 1);
+		bookMap.put(book.getId(), book);
 	}
 }
