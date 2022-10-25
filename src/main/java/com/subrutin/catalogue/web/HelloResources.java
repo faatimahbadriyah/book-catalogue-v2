@@ -32,7 +32,7 @@ public class HelloResources {
 		
 		HelloMessageResponseDTO dto = new HelloMessageResponseDTO();
 		dto.setMessage(greetingService.sayGreeting());
-		return ResponseEntity.ok().body(dto);
+		return ResponseEntity.accepted().body(dto);
 	}
 
 }
