@@ -2,12 +2,30 @@ logging:
   level:
     '[com.subrutin.catalogue.service]': TRACE
 
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 600000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+    url: jdbc:postgresql://127.0.0.1/book_catalogue
+    username: subrutin
+    password: subrutin
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
 app:
   currency: IDR
   timezone: Asia/Jakarta
   welcome-text: Hello World from Spring Book (This text comes from default properties)
 cloud:
-  api-key: '${CLOUD_KEY} '
+  api-key: '${CLOUD_KEY}'
 server:
   port: 8081
   
