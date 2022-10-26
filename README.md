@@ -42,3 +42,16 @@ Run on your cli
 4. hit Next 
 5. check pom.xml
 6. hit Finish
+
+## ways to create user db
+1. open dbeaver
+2. choose connection 
+3. right click on Roles
+4. Create New Role
+5. fill Username and Password
+6. adjust properties
+7. save
+8. edit connection
+9. update Authentication with current credential
+10. Test Connection
+11. OK
