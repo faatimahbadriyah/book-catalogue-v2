@@ -9,6 +9,7 @@ import com.subrutin.catalogue.domain.Author;
 import com.subrutin.catalogue.domain.Book;
 import com.subrutin.catalogue.dto.BookCreateDTO;
 import com.subrutin.catalogue.dto.BookDetailDTO;
+import com.subrutin.catalogue.dto.BookUpdateRequestDTO;
 import com.subrutin.catalogue.repository.BookRepository;
 import com.subrutin.catalogue.service.BookService;
 
@@ -55,5 +56,19 @@ public class BookServiceImpl implements BookService{
 		book.setTitle(dto.getBookTitle());
 		book.setDescription(dto.getDescription());
 		bookRepository.save(book);
+	}
+
+	@Override
+	public void updateBook(Long bookId, BookUpdateRequestDTO dto) {
+		//get book from repository
+		Book book = bookRepository.findBookById(bookId);
+		
+		//update
+		book.setTitle(dto.getBookTitle());
+		book.setDescription(dto.getDescription());
+		
+		//save
+		bookRepository.update(book);
+		
 	}
 }

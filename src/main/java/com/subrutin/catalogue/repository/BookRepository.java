@@ -11,5 +11,7 @@ public interface BookRepository {
 	public List<Book> findAll();
 	
 	public void save(Book book);
+	
+	public void update(Book book);
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.subrutin.catalogue.dto.BookCreateDTO;
 import com.subrutin.catalogue.dto.BookDetailDTO;
+import com.subrutin.catalogue.dto.BookUpdateRequestDTO;
 
 public interface BookService {
 	
@@ -12,5 +13,7 @@ public interface BookService {
 	public List<BookDetailDTO> findBookListDetail();
 	
 	public void createNewBook(BookCreateDTO dto);
+	
+	public void updateBook(Long bookId, BookUpdateRequestDTO dto);
 
 }
