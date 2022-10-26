@@ -55,3 +55,11 @@ Run on your cli
 9. update Authentication with current credential
 10. Test Connection
 11. OK
+
+## ways to connect db from cli
+1. make sure path postgre has been added to system variables
+2. open cli
+3. type 
+> psql -U {username} -d {database}
+4. fill password
+5. type \? for doc syntax
