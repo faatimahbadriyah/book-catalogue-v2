@@ -1,6 +1,7 @@
 package com.subrutin.catalogue.web;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StopWatch;
@@ -38,6 +39,11 @@ public class BookResource {
 	public ResponseEntity<Void> createNewBook(@RequestBody BookCreateDTO dto){
 		bookService.createNewBook(dto);
 		return ResponseEntity.created(URI.create("/book")).build();
+	}
+	
+	@GetMapping("/book")
+	public ResponseEntity<List<BookDetailDTO>> findBookList(){
+		return ResponseEntity.ok().body(bookService.findBookListDetail());
 	}
 	
 }
