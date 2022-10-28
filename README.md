@@ -63,3 +63,9 @@ Run on your cli
 > psql -U {username} -d {database}
 4. fill password
 5. type \? for doc syntax
+
+## hibernate ddl-auto notes
+1. create: automatic recreate table on start (data will be removed) --> commonly for env testing
+2. update: create table if not exist --> commonly for env development
+3. validate: validate model to existing table (error if table not exist) --> commonly for env production
+4. create-drop: automatic recreate table when start project and drop table when stop project --> commonly for env testing
