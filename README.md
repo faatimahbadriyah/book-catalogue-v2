@@ -69,3 +69,13 @@ Run on your cli
 2. update: create table if not exist --> commonly for env development
 3. validate: validate model to existing table (error if table not exist) --> commonly for env production
 4. create-drop: automatic recreate table when start project and drop table when stop project --> commonly for env testing
+
+## generated value notes
+1. postgre -> bigserial
+2. mysql -> autoincrement
+3. kondisi diatas berlaku jika menggunakan strategy indentity
+4. identity dimanage oleh db sedangkan sequence oleh hibernate
+5. identity dlm performa lebih efisien dibandingkan sequence (1 insert 2 statement -> get sequence dan insert statement)
+6. akan tetapi sequence memiliki fitur batch insert
+7. identity juga dapat menyimpan batch insert namun query insert akan dibuat sebanyak jumlah data insert
+8. batch insert identity dapat menjadi efisien dengan cara stored procedure
