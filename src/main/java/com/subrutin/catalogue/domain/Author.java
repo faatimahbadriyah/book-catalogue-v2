@@ -22,6 +22,9 @@ public class Author {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//postgre -> bigserial
+	//mysql -> autoincrement
+	//kondisi diatas berlaku ika menggunakan strategy indentity
 	private Long id;
 	
 	@Column(name = "author_name", nullable = false, columnDefinition = "varchar(300)")
