@@ -26,6 +26,8 @@ public class Author {
 	//mysql -> autoincrement
 	//kondisi diatas berlaku ika menggunakan strategy indentity
 	//identity di manage oleh db sedangkan sequence oleh hibernate
+	//identity dlm performa lebih efisien dibandingkan sequence (1 insert 2 statement -> get sequence dan insert statement)
+	//akan tetapi sequence memiliki fitur batch insert
 	private Long id;
 	
 	@Column(name = "author_name", nullable = false, columnDefinition = "varchar(300)")
