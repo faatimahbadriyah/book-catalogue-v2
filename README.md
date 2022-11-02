@@ -79,3 +79,7 @@ Run on your cli
 6. akan tetapi sequence memiliki fitur batch insert
 7. identity juga dapat menyimpan batch insert namun query insert akan dibuat sebanyak jumlah data insert
 8. batch insert identity dapat menjadi efisien dengan cara stored procedure
+
+## dynamic update notes
+1. cocok digunakan untuk update data dengan kolom banyak namun yang di update sedikit kolom (meningkatkan performa)
+2. kurang cocok untuk update data dengan kolom sedikit karena dengan anotasi ini hibernate akan mematikan caching db (menurunkan performa)
