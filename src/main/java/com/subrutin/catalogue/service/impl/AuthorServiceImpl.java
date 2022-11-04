@@ -58,4 +58,13 @@ public class AuthorServiceImpl implements AuthorService {
 		authorRepository.save(author);
 	}
 
+	@Override
+	public void deleteAuthor(Long authorId) {
+		// 1. select data
+		// 2. delete
+		//or
+		// 1. delete
+		authorRepository.deleteById(authorId);
+	}
+
 }
