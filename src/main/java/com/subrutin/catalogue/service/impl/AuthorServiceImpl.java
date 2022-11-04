@@ -62,9 +62,18 @@ public class AuthorServiceImpl implements AuthorService {
 	public void deleteAuthor(Long authorId) {
 		// 1. select data
 		// 2. delete
-		//or
+
+		// or
 		// 1. delete
-		authorRepository.deleteById(authorId);
+//		authorRepository.deleteById(authorId);
+
+		// soft delete
+		// 1. select data deleted false
+		Author author = authorRepository.findByIdAndDeletedFalse(authorId)
+				.orElseThrow(() -> new BadRequestException("invalid.authorId"));
+		// 2. update deleted = true
+		author.setDeleted(Boolean.TRUE);
+		authorRepository.save(author);
 	}
 
 }

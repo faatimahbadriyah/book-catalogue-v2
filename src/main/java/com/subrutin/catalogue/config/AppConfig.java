@@ -17,7 +17,7 @@ public class AppConfig {
 
 	@Bean
 	public Author author() {
-		return new Author(1L, "Stephanie Mayer", null);
+		return new Author(1L, "Stephanie Mayer", null, false);
 	}
 	
 	@Bean
