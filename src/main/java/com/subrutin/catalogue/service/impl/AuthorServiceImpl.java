@@ -25,7 +25,7 @@ public class AuthorServiceImpl implements AuthorService {
 	@Override
 	public AuthorResponseDTO findAuthorById(Long id) {
 		// 1. fetch data from db
-		Author author = authorRepository.findById(id).orElseThrow(() -> new BadRequestException("invalid.authorId"));
+		Author author = authorRepository.findByIdAndDeletedFalse(id).orElseThrow(() -> new BadRequestException("invalid.authorId"));
 
 		// 2. parse to authorResponseDTO
 		AuthorResponseDTO dto = new AuthorResponseDTO();
@@ -50,7 +50,7 @@ public class AuthorServiceImpl implements AuthorService {
 
 	@Override
 	public void updateAuthor(Long authorId, AuthorUpdateRequestDTO dto) {
-		Author author = authorRepository.findById(authorId)
+		Author author = authorRepository.findByIdAndDeletedFalse(authorId)
 				.orElseThrow(() -> new BadRequestException("invalid.authorId"));
 		author.setName(dto.getAuthorName() == null ? author.getName() : dto.getAuthorName());
 		author.setBirthDate(
