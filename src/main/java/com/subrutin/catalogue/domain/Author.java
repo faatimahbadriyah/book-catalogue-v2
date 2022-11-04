@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -28,7 +29,8 @@ import lombok.NoArgsConstructor;
 public class Author {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_generator")
+	@SequenceGenerator(name = "author_generator", sequenceName = "author_id_seq")
 	private Long id;
 	
 	@Column(name = "author_name", nullable = false, columnDefinition = "varchar(300)")
