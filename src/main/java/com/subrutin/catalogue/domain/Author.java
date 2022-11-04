@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 public class Author {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_generator")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "author_generator", sequenceName = "author_id_seq")
 	private Long id;
 	
