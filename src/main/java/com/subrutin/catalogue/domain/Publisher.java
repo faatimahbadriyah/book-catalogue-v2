@@ -2,6 +2,7 @@ package com.subrutin.catalogue.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,9 @@ public class Publisher implements Serializable{
 	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq")
 	private Long id;
 	
+	@Column(name = "secure_id", nullable = false, unique = false)
+	private String secureId = UUID.randomUUID().toString();
+	
 	@Column(name = "name", nullable = false)
 	private String name;
 
@@ -40,4 +44,7 @@ public class Publisher implements Serializable{
 	
 	@OneToMany(mappedBy = "publisher")
 	private List<Book> books;
+	
+	@Column(name = "deleted", columnDefinition = "boolean default false")
+	private Boolean deleted;
 }
