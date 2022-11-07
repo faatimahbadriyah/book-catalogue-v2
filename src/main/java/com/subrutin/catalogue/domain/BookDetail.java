@@ -1,5 +1,7 @@
 package com.subrutin.catalogue.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +16,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "book_detail")
-public class BookDetail {
+public class BookDetail implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8863806621826983713L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
