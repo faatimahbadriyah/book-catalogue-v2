@@ -1,5 +1,6 @@
 package com.subrutin.catalogue.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -26,10 +27,15 @@ import lombok.NoArgsConstructor;
 @DynamicUpdate
 @Where(clause = "deleted=false")
 @SQLDelete(sql = "UPDATE author SET deleted = true WHERE id = ?")
-public class Author {
+public class Author implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1333310325669325406L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_generator")
 	@SequenceGenerator(name = "author_generator", sequenceName = "author_id_seq")
 	private Long id;
 	

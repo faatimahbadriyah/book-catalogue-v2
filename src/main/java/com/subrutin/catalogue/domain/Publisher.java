@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -24,7 +25,8 @@ public class Publisher implements Serializable{
 	private static final long serialVersionUID = 5967251835452724352L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "publisher_generator")
+	@SequenceGenerator(name = "publisher_generator", sequenceName = "publisher_id_seq")
 	private Long id;
 	
 	@Column(name = "name", nullable = false)
