@@ -26,6 +26,6 @@ public class AbstractBaseEntity implements Serializable{
 	private String secureId = UUID.randomUUID().toString();
 	
 	@Column(name = "deleted", columnDefinition = "boolean default false")
-	private Boolean deleted;
+	private boolean deleted;
 
 }
