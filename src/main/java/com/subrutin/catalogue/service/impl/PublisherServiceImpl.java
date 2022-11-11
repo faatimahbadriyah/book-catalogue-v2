@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.subrutin.catalogue.domain.Publisher;
 import com.subrutin.catalogue.dto.PublisherCreateRequestDTO;
 import com.subrutin.catalogue.dto.PublisherListResponseDTO;
+import com.subrutin.catalogue.dto.PublisherResponseDTO;
 import com.subrutin.catalogue.dto.PublisherUpdateRequestDTO;
 import com.subrutin.catalogue.dto.ResultPageResponseDTO;
 import com.subrutin.catalogue.exception.BadRequestException;
@@ -75,6 +76,14 @@ public class PublisherServiceImpl implements PublisherService {
 	public Publisher findPublisher(String publisherId) {
 		return publisherRepository.findBySecureId(publisherId)
 				.orElseThrow(() -> new BadRequestException("invalid.publisher_id"));
+	}
+
+	@Override
+	public PublisherResponseDTO construDTO(Publisher publisher) {
+		PublisherResponseDTO dto = new PublisherResponseDTO();
+		dto.setPublisherId(publisher.getSecureId());
+		dto.setPublisherName(publisher.getName());
+		return dto;
 	}
 
 }

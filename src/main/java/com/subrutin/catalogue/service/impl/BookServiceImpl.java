@@ -10,7 +10,7 @@ import com.subrutin.catalogue.domain.Book;
 import com.subrutin.catalogue.domain.Category;
 import com.subrutin.catalogue.domain.Publisher;
 import com.subrutin.catalogue.dto.BookCreateDTO;
-import com.subrutin.catalogue.dto.BookDetailDTO;
+import com.subrutin.catalogue.dto.BookDetailResponseDTO;
 import com.subrutin.catalogue.dto.BookUpdateRequestDTO;
 import com.subrutin.catalogue.exception.BadRequestException;
 import com.subrutin.catalogue.repository.BookRepository;
@@ -28,32 +28,34 @@ public class BookServiceImpl implements BookService {
 	// final ditujukan agar bookRepository hanya diset pada saat proses inisialisasi
 	// bean bookService
 	private final BookRepository bookRepository;
-	
-	private final AuthorService authorService;	
-	
+
+	private final AuthorService authorService;
+
 	private final CategoryService categoryService;
-	
+
 	private final PublisherService publisherService;
-	
+
 	@Override
-	public BookDetailDTO findBookDetailById(Long bookId) {
-		Book book = bookRepository.findById(bookId).orElseThrow(() -> new BadRequestException("book_id.invalid"));
-		BookDetailDTO dto = new BookDetailDTO();
-		dto.setBookId(book.getId());
-//		dto.setAuthorName(book.getAuthor().getName());
+	public BookDetailResponseDTO findBookDetailById(String bookId) {
+		Book book = bookRepository.findBySecureId(bookId).orElseThrow(() -> new BadRequestException("book_id.invalid"));
+		BookDetailResponseDTO dto = new BookDetailResponseDTO();
+		dto.setBookId(book.getSecureId());
+		dto.setCategories(categoryService.constructDTO(book.getCategories()));
+		dto.setAuthors(authorService.constructDto(book.getAuthors()));
+		dto.setPublisher(publisherService.construDTO(book.getPublisher()));
 		dto.setBookTitle(book.getTitle());
 		dto.setBookDescription(book.getDescription());
 		return dto;
 	}
 
 	@Override
-	public List<BookDetailDTO> findBookListDetail() {
+	public List<BookDetailResponseDTO> findBookListDetail() {
 		List<Book> books = bookRepository.findAll();
 		return books.stream().map((b) -> {
-			BookDetailDTO dto = new BookDetailDTO();
+			BookDetailResponseDTO dto = new BookDetailResponseDTO();
 //			dto.setAuthorName(b.getAuthor().getName());
 			dto.setBookDescription(b.getDescription());
-			dto.setBookId(b.getId());
+//			dto.setBookId(b.getId());
 			dto.setBookTitle(b.getTitle());
 			return dto;
 		}).collect(Collectors.toList());
@@ -63,8 +65,8 @@ public class BookServiceImpl implements BookService {
 	public void createNewBook(BookCreateDTO dto) {
 		List<Author> authors = authorService.findAuthors(dto.getAuthorIdList());
 		List<Category> categories = categoryService.findCategories(dto.getCategoryList());
-		Publisher publisher = publisherService.findPublisher(dto.getPublisherId());		
-		
+		Publisher publisher = publisherService.findPublisher(dto.getPublisherId());
+
 		Book book = new Book();
 		book.setAuthors(authors);
 		book.setCategories(categories);
@@ -84,7 +86,7 @@ public class BookServiceImpl implements BookService {
 		book.setDescription(dto.getDescription());
 
 		// save
-		bookRepository.save (book);
+		bookRepository.save(book);
 
 	}
 

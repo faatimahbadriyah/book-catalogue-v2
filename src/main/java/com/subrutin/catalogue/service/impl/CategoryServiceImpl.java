@@ -63,6 +63,17 @@ public class CategoryServiceImpl implements CategoryService{
 		List<Category> categories = categoryRepository.findByCodeIn(categoryCodeList);		
 		if (categories.isEmpty()) throw new BadRequestException("category can't empty");
 		return categories;
+	}
+
+	@Override
+	public List<CategoryListResponseDTO> constructDTO(List<Category> categories) {
+		return categories.stream().map((c)->{
+			CategoryListResponseDTO dto = new CategoryListResponseDTO();
+			dto.setCode(c.getCode());
+			dto.setName(c.getName());
+			dto.setDescription(c.getDescription());
+			return dto;
+		}).collect(Collectors.toList());
 	}	
 
 }

@@ -84,4 +84,14 @@ public class AuthorServiceImpl implements AuthorService {
 		return authors;
 	}
 
+	@Override
+	public List<AuthorResponseDTO> constructDto(List<Author> authors) {
+		return authors.stream().map((a)->{
+			AuthorResponseDTO dto = new AuthorResponseDTO();
+			dto.setAuthorName(a.getName());
+			dto.setBirthDate(a.getBirthDate().toEpochDay());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
 }
