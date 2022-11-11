@@ -14,6 +14,7 @@ import com.subrutin.catalogue.domain.Category;
 import com.subrutin.catalogue.dto.CategoryCreateUpdateRequestDTO;
 import com.subrutin.catalogue.dto.CategoryListResponseDTO;
 import com.subrutin.catalogue.dto.ResultPageResponseDTO;
+import com.subrutin.catalogue.exception.BadRequestException;
 import com.subrutin.catalogue.repository.CategoryRepository;
 import com.subrutin.catalogue.service.CategoryService;
 import com.subrutin.catalogue.util.PaginationUtil;
@@ -56,7 +57,12 @@ public class CategoryServiceImpl implements CategoryService{
 		
 		return PaginationUtil.createResultPageDTO(dtos, pageResult.getTotalElements(), pageResult.getTotalPages());
 	}
-	
-	
+
+	@Override
+	public List<Category> findCategories(List<String> categoryCodeList) {
+		List<Category> categories = categoryRepository.findByCodeIn(categoryCodeList);		
+		if (categories.isEmpty()) throw new BadRequestException("category can't empty");
+		return categories;
+	}	
 
 }

@@ -15,6 +15,8 @@ public interface AuthorRepository extends JpaRepository<Author, Long>{
 	
 	public Optional<Author> findBySecureId(String id);
 	
+	public List<Author> findBySecureIdIn(List<String> authorIdList);
+	
 	//sql select * from author a where a.id = id and deleted = false
 	public Optional<Author> findByIdAndDeletedFalse(Long id);
 	
