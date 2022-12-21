@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 public class LoggingAspect {
 	
-	@Pointcut("execution(* com.subrutin.catalogue.web.BookResource.findBookDetail(..))")
+	@Pointcut("execution(* com.subrutin.catalogue.web.AuthorResource.*(..))")
 	private void restAPI() {}
 	
 	@Before("restAPI()")
