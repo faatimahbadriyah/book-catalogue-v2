@@ -12,13 +12,18 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 public class LoggingAspect {
 	
-	@Pointcut("execution(* com.subrutin.catalogue.web.AuthorResource.*(..))")
+	//dapat lebih detail menentukan join poin method mana hingga argumen seperti apa
+	@Pointcut("execution(* com.subrutin.catalogue.web.*.*(..))")
 	private void restAPI() {}
 	
-	@Before("restAPI()")
+	//pilihan terbatas
+	@Pointcut("within(com.subrutin.catalogue.web.*)")
+	private void withinPointCutExample() {}
+	
+	@Before("withinPointCutExample()")
 	public void beforeExecutedLog() {
 		
-		log.info("this is log from aspect");
+		log.info("this is log from aspect within");
 		
 	}
 
