@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoggingAspect {
 	
 	//dapat lebih detail menentukan join poin method mana hingga argumen seperti apa
-	@Pointcut("execution(* com.subrutin.catalogue.web.*.*(com.subrutin.catalogue.dto.PublisherCreateRequestDTO))")
+	@Pointcut("execution(* com.subrutin.catalogue.web.*.*(..))")
 	private void restAPI() {}
 	
 	//pilihan terbatas
@@ -23,11 +23,16 @@ public class LoggingAspect {
 	@Pointcut("args(com.subrutin.catalogue.dto.PublisherCreateRequestDTO)")
 	private void argsPointCutExample() {}
 	
+	@Pointcut("@args(com.subrutin.catalogue.annotation.LogThisArg)")
+	private void argsAnnotationPoincutExample() {
+		
+	}
+	
 	//advise
-	@Before("restAPI()")
+	@Before("restAPI() && argsAnnotationPoincutExample()")
 	public void beforeExecutedLog() {
 		
-		log.info("this is log from aspect execution without args");
+		log.info("this is log from aspect execution with @args");
 		
 	}
 
