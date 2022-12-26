@@ -18,6 +18,7 @@ import com.subrutin.catalogue.dto.PublisherCreateRequestDTO;
 import com.subrutin.catalogue.dto.PublisherListResponseDTO;
 import com.subrutin.catalogue.dto.PublisherUpdateRequestDTO;
 import com.subrutin.catalogue.dto.ResultPageResponseDTO;
+import com.subrutin.catalogue.exception.BadRequestException;
 import com.subrutin.catalogue.service.PublisherService;
 
 import lombok.AllArgsConstructor;
@@ -49,7 +50,9 @@ public class PublisherResource {
 			@RequestParam(name = "sortBy", required = true, defaultValue = "name") String sortBy,
 			@RequestParam(name = "direction", required = true, defaultValue = "asc") String direction,
 			@RequestParam(name = "publisherName", required = false) String publisherName) {
-		
+		if (pages<0) {
+			throw new BadRequestException("invalid pages");
+		}
 		return ResponseEntity.ok().body(publisherService.findPublisherList(pages, limit, sortBy, direction, publisherName));
 	}
 }
