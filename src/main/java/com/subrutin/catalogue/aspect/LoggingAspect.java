@@ -1,5 +1,8 @@
 package com.subrutin.catalogue.aspect;
 
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -11,32 +14,53 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 public class LoggingAspect {
-	
-	//dapat lebih detail menentukan join poin method mana hingga argumen seperti apa
+
+	// dapat lebih detail menentukan join poin method mana hingga argumen seperti
+	// apa
 	@Pointcut("execution(* com.subrutin.catalogue.web.*.*(..))")
-	private void restAPI() {}
-	
-	//pilihan terbatas
+	private void restAPI() {
+	}
+
+	// pilihan terbatas
 	@Pointcut("within(com.subrutin.catalogue.web.*)")
-	private void withinPointCutExample() {}
-	
+	private void withinPointCutExample() {
+	}
+
 	@Pointcut("args(com.subrutin.catalogue.dto.PublisherCreateRequestDTO)")
-	private void argsPointCutExample() {}
-	
+	private void argsPointCutExample() {
+	}
+
 	@Pointcut("@args(com.subrutin.catalogue.annotation.LogThisArg)")
 	private void argsAnnotationPoincutExample() {
-		
+
 	}
-	
+
 	@Pointcut("@annotation(com.subrutin.catalogue.annotation.LogThisMethod)")
-	private void annotationPointcutExample() {}
-	
-	//advise
+	private void annotationPointcutExample() {
+	}
+
+	// advise before
 	@Before("annotationPointcutExample()")
 	public void beforeExecutedLog() {
-		
-		log.info("this is log from aspect annotation");
-		
+		log.info("this is log from aspect annotation before method executed");
+	}
+
+	// advise before
+	@After("annotationPointcutExample()")
+	public void afterExecutedLog() {
+		log.info("this is log from aspect annotation after method executed");
+	}
+
+	// advise before
+	@AfterReturning("annotationPointcutExample()")
+	public void afterReturnExecutedLog() {
+		log.info("this is log from aspect annotation after return method executed");
+	}
+
+	// advise before
+	@AfterThrowing("annotationPointcutExample()")
+	public void afterThrowingExecutedLog() {
+		log.info("this is log from aspect annotation after throwing method executed");
 	}
 
 }
