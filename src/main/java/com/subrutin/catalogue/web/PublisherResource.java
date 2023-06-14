@@ -53,6 +53,13 @@ public class PublisherResource {
 		if (pages<0) {
 			throw new BadRequestException("invalid pages");
 		}
+		
+		String merchant_name = "Tom Hanks".substring("Tom Hanks".indexOf("-") + "-".length());
+		System.out.println("Substring after separator = "+ merchant_name);
+		
+		String[] result = "Tom-Hanks".split(" ");
+		System.out.println("Testtt " + result.toString());
+		
 		return ResponseEntity.ok().body(publisherService.findPublisherList(pages, limit, sortBy, direction, publisherName));
 	}
 }
