@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -20,9 +21,9 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "app_user")
-public class AppUser extends AbstractBaseEntity implements UserDetails{
-	
+@Table(name = "app_user", indexes = { @Index(name = "uk_username", columnList = "username") })
+public class AppUser extends AbstractBaseEntity implements UserDetails {
+
 	/**
 	 * 
 	 */
@@ -31,19 +32,17 @@ public class AppUser extends AbstractBaseEntity implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "username", nullable = false)
 	private String username;
-	
+
 	@Column(name = "password", nullable = false)
 	private String password;
-	
+
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = {
-			@JoinColumn(name="user_id", referencedColumnName = "id")
-	}, inverseJoinColumns = {
-			@JoinColumn(name="role_id", referencedColumnName = "id")
-	})
+			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", referencedColumnName = "id") })
 	private List<Role> roles;
 
 	@Override
