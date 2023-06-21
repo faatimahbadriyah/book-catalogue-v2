@@ -17,10 +17,10 @@ import com.subrutin.catalogue.repository.impl.BookRepositoryImpl;
 @Configuration
 public class AppConfig {
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public PasswordEncoder passwordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 //	@Bean
 //	public Author author() {
