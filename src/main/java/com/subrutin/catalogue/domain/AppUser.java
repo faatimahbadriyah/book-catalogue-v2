@@ -43,6 +43,8 @@ public class AppUser extends AbstractBaseEntity implements UserDetails {
 	@Column(name = "password", nullable = false)
 	private String password;
 
+	//fetch itu untuk many to many dan one to many defaultnya lazy artinya ketika app user berhasil didapat, jpa tidak akan menyertakan data roles
+	//jika kita atur type nya eager maka jpa akan menyertakan data asosiasi/relasinya
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
