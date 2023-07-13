@@ -20,7 +20,10 @@ import com.subrutin.catalogue.service.CategoryService;
 import com.subrutin.catalogue.service.PublisherService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @AllArgsConstructor
 @Service("bookService")
 public class BookServiceImpl implements BookService {
@@ -37,12 +40,25 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public BookDetailResponseDTO findBookDetailById(String bookId) {
+		log.info("=== start get data book ===");
 		Book book = bookRepository.findBySecureId(bookId).orElseThrow(() -> new BadRequestException("book_id.invalid"));
+		log.info("=== finish get data book ===");
+		
 		BookDetailResponseDTO dto = new BookDetailResponseDTO();
 		dto.setBookId(book.getSecureId());
+	
+		log.info("=== start get data category ===");
 		dto.setCategories(categoryService.constructDTO(book.getCategories()));
+		log.info("=== finish get data category ===");
+		
+		log.info("=== start get data author ===");
 		dto.setAuthors(authorService.constructDto(book.getAuthors()));
+		log.info("=== finish get data author ===");
+		
+		log.info("=== start get data publisher ===");
 		dto.setPublisher(publisherService.construDTO(book.getPublisher()));
+		log.info("=== end get data publisher ===");
+		
 		dto.setBookTitle(book.getTitle());
 		dto.setBookDescription(book.getDescription());
 		return dto;

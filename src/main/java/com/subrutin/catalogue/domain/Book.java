@@ -33,10 +33,12 @@ public class Book extends AbstractBaseEntity {
 	@Column(name = "description", nullable = false, columnDefinition = "TEXT")
 	private String description;
 
+	//many to one dan one to one default konfigurasi fetch typenya eager (date relasi disertakan)
 	@ManyToOne
 	@JoinColumn(name = "publisher_id", nullable = false)
 	private Publisher publisher;
 
+	//many to many dan one to many default konfigurasi fetch typenya lazy (data relasi tidak disertakan)
 	@ManyToMany
 	@JoinTable(name = "book_author", joinColumns = {
 			@JoinColumn(name = "book_id", referencedColumnName = "id") }, inverseJoinColumns = {
