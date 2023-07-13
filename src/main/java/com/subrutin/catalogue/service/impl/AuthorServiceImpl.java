@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.subrutin.catalogue.domain.Address;
 import com.subrutin.catalogue.domain.Author;
 import com.subrutin.catalogue.dto.AuthorCreateRequestDTO;
 import com.subrutin.catalogue.dto.AuthorResponseDTO;
@@ -43,6 +44,15 @@ public class AuthorServiceImpl implements AuthorService {
 			Author author = new Author();
 			author.setName(dto.getAuthorName());
 			author.setBirthDate(LocalDate.ofEpochDay(dto.getBirthDate()));
+			List<Address> addresses = dto.getAddresses().stream().map(a->{
+				Address address = new Address();
+				address.setCityName(a.getCityName());
+				address.setStreetName(a.getStreetName());
+				address.setZipCode(a.getZipCode());
+				address.setAuthor(author);
+				return address;
+			}).collect(Collectors.toList());
+			author.setAddresses(addresses);
 			return author;
 		}).collect(Collectors.toList());
 
